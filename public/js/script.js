@@ -26,6 +26,15 @@
 
     let re = /^(\w){3,6}:/;
     let mtch = msg.match(re);
+    let msgs = document.querySelector("#messages");
+
+    if (msg.length > 69 || msg == "::bank") {
+      let hans =
+        "<i>Hey, everyone, I just tried to do something very silly!</i>";
+      newLi.innerHTML = hans;
+      msgs.append(newLi);
+      return;
+    }
 
     if (mtch) {
       let str = mtch[0];
@@ -34,6 +43,8 @@
       if (arr.includes(str)) {
         msg = msg.substr(str.length + 1, msg.length);
         newLi.className = str;
+        msgs.append(newLi);
+        return;
       }
 
       if (str == "scroll" || str == "slide" || str == "shake") {
@@ -43,7 +54,7 @@
         let newSpan = document.createElement("span");
         newSpan.textContent = msg;
         newLi.append(newSpan);
-        document.querySelector("#messages").append(newLi);
+        msgs.append(newLi);
         return;
       }
 
@@ -55,12 +66,12 @@
 
         newLi.className = str;
         newLi.innerHTML = split;
-        document.querySelector("#messages").append(newLi);
+        msgs.append(newLi);
         return;
       }
     }
 
     newLi.textContent = msg;
-    document.querySelector("#messages").append(newLi);
+    msgs.append(newLi);
   });
 })();

@@ -43,13 +43,17 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  margin-bottom: 81px;
+  margin-bottom: 50px;
 }
 #messages li {
   padding: 5px 10px;
   background: #000;
   height: 39px;
 }
+#messages li::first-letter {
+  text-transform: capitalize;
+}
+
 #messages li:nth-child(odd) {
   background: #222;
 }
