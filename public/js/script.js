@@ -29,9 +29,9 @@
     let msgs = document.querySelector("#messages");
 
     if (msg.length > 69 || msg == "::bank") {
-      let hans =
+      let hackers =
         "<i>Hey, everyone, I just tried to do something very silly!</i>";
-      newLi.innerHTML = hans;
+      newLi.innerHTML = hackers;
       msgs.append(newLi);
       return;
     }
@@ -43,6 +43,7 @@
       if (arr.includes(str)) {
         msg = msg.substr(str.length + 1, msg.length);
         newLi.className = str;
+        newLi.textContent = msg;
         msgs.append(newLi);
         return;
       }
@@ -69,6 +70,10 @@
         msgs.append(newLi);
         return;
       }
+    }
+
+    if (!msg.replace(/\s/g, "").length || msg.length <= 1) {
+      return;
     }
 
     newLi.textContent = msg;
