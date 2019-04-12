@@ -14,14 +14,14 @@ http.listen(3000, function() {
 });
 
 io.on("connection", function(socket) {
-  //io.emit("chat message", "Welcome!");
-  console.log("user connected");
+  console.log("user connected (" + socket.id + ")");
+  io.to(socket.id).emit("chat message", "You are connected!");
 
   socket.on("disconnect", function() {
-    console.log("user disconnected");
+    io.to(socket.id).emit("chat message", "You have been disconnected.");
+    console.log("user disconnected (" + socket.id + ")");
   });
   socket.on("chat message", function(msg) {
     io.emit("chat message", msg);
-    console.log(socket.id);
   });
 });
